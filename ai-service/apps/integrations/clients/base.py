@@ -4,7 +4,7 @@ from apps.common.exceptions import ServiceIntegrationError
 
 
 class BaseServiceClient:
-    timeout = 10.0
+    timeout = 20.0
 
     def __init__(self):
         self.headers = {

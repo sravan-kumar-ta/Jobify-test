@@ -20,5 +20,9 @@ FROM nginx:1.21-alpine
 COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
+
+EXPOSE 80 443
+
+CMD ["/start.sh"]

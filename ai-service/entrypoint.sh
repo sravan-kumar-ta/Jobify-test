@@ -29,5 +29,5 @@ python manage.py migrate --noinput
 echo "Collecting static files..."
 python manage.py collectstatic --noinput
 
-echo "Starting Django ASGI server with Daphne..."
-exec daphne -b 0.0.0.0 -p 8000 config.asgi:application
+echo "Starting Gunicorn server..."
+exec gunicorn config.wsgi:application --bind 0.0.0.0:8000

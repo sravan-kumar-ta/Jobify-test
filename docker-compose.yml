@@ -9,9 +9,11 @@ services:
         VITE_WEBSOCKET_URL: "/ws/chat/"
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - static_data:/usr/share/nginx/html/static
-      - media_data:/usr/share/nginx/html/media 
+      - media_data:/usr/share/nginx/html/media
+      - /etc/letsencrypt:/etc/letsencrypt:ro
     depends_on:
       - ai-service
       - auth-service
@@ -114,6 +116,7 @@ services:
       - INTERNAL_SERVICE_TOKEN=${INTERNAL_SERVICE_TOKEN}
     volumes:
       - static_data:/app/staticfiles
+      - media_data:/app/media 
     depends_on:
       - seeker-db
 
